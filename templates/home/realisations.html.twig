@@ -59,87 +59,144 @@
             border-radius: 2px;
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        
-        .gallery-item {
-            background: transparent;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .gallery-item h3 {
-            padding: 2rem 0 1.5rem 0;
-            background: transparent;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            letter-spacing: 0;
-            color: #0a0a0a;
-        }
-        
-        .gallery-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+        .gallery-carousel {
             position: relative;
-            overflow: hidden;
-        }
-        
-        .gallery-images a {
-            display: block;
-            overflow: hidden;
-            border-radius: 4px;
-        }
-
-        .gallery-see-more {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #c9a961;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            padding-bottom: 0.3rem;
-        }
-
-        .gallery-see-more:hover {
-            border-bottom-color: #c9a961;
-            transform: translateX(5px);
-        }
-        
-        .gallery-images img {
             width: 100%;
-            height: 300px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .gallery-carousel-container {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .gallery-slide {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-slide a {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+        
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: grayscale(0%);
-            border-radius: 4px;
+            display: block;
         }
         
-        .gallery-item:hover .gallery-images img {
-            transform: scale(1.05);
+        /* Par défaut, empile toutes les slides au centre (visibles) */
+        .gallery-slide {
+            width: 450px;
+            height: 450px;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 1;
         }
         
-        .gallery-item p {
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: 400;
+        .gallery-slide.active {
+            width: 450px;
+            height: 450px;
+            z-index: 3;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        
+        .gallery-slide.prev {
+            width: 320px;
+            height: 320px;
+            z-index: 2;
+            opacity: 0.5;
+            transform: translateX(-280px) scale(0.85);
+            filter: brightness(0.7);
+        }
+        
+        .gallery-slide.next {
+            width: 320px;
+            height: 320px;
+            z-index: 2;
+            opacity: 0.5;
+            transform: translateX(280px) scale(0.85);
+            filter: brightness(0.7);
+        }
+        
+        .gallery-slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .gallery-slide-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-slide.active .gallery-slide-title {
+            opacity: 1;
+        }
+        
+        .gallery-carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-carousel-nav:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-carousel-nav svg {
+            width: 28px;
+            height: 28px;
+            stroke: #0a0a0a;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .gallery-carousel-nav.prev {
+            left: 20px;
+        }
+        
+        .gallery-carousel-nav.next {
+            right: 20px;
         }
         
         .no-galleries {
@@ -152,12 +209,39 @@
         }
         
         @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .gallery-carousel-container {
+                height: 320px;
             }
             
-            .gallery-images img {
-                height: 250px;
+            .gallery-slide.active {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .gallery-slide.prev,
+            .gallery-slide.next {
+                width: 220px;
+                height: 220px;
+                transform: translateX(-180px) scale(0.75);
+            }
+            
+            .gallery-slide.next {
+                transform: translateX(180px) scale(0.75);
+            }
+            
+            .gallery-carousel-nav {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .gallery-carousel-nav svg {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .gallery-slide-title {
+                font-size: 1.2rem;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -174,36 +258,27 @@
             <h2>{{ categoryName }}</h2>
             
             {% if galleries[categoryKey] is not empty %}
-                <div class="gallery-grid">
-                    {% for gallery in galleries[categoryKey] %}
-                        <div class="gallery-item">
-                            <h3>{{ gallery.title }}</h3>
-                            
-                            {% if gallery.images is not empty %}
-                                <div class="gallery-images">
-                                    {% for image in gallery.images|slice(0, 4) %}
-                                        <a href="{{ path('app_gallery_detail', {id: gallery.id}) }}">
-                                            <img src="/uploads/gallery/{{ image.filename }}" 
-                                                 alt="{{ image.caption ?? gallery.title }}">
-                                        </a>
-                                    {% endfor %}
+                <div class="gallery-carousel" id="carousel-{{ categoryKey }}">
+                    <button class="gallery-carousel-nav prev" onclick="navigateGalleryCarousel('{{ categoryKey }}', -1)">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="gallery-carousel-container">
+                        {% for gallery in galleries[categoryKey] %}
+                            {% set firstImage = gallery.images|first %}
+                            {% if firstImage %}
+                                <div class="gallery-slide" data-index="{{ loop.index0 }}">
+                                    <a href="{{ path('app_gallery_detail', {id: gallery.id}) }}">
+                                        <img src="/uploads/gallery/{{ firstImage.filename }}" 
+                                             alt="{{ gallery.title }}">
+                                        <div class="gallery-slide-title">{{ gallery.title }}</div>
+                                    </a>
                                 </div>
-                                {% if gallery.images|length > 4 %}
-                                    <a href="{{ path('app_gallery_detail', {id: gallery.id}) }}" class="gallery-see-more">
-                                        Voir les {{ gallery.images|length }} photos →
-                                    </a>
-                                {% else %}
-                                    <a href="{{ path('app_gallery_detail', {id: gallery.id}) }}" class="gallery-see-more">
-                                        Voir la galerie →
-                                    </a>
-                                {% endif %}
                             {% endif %}
-                            
-                            {% if gallery.description %}
-                                <p>{{ gallery.description }}</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <button class="gallery-carousel-nav next" onclick="navigateGalleryCarousel('{{ categoryKey }}', 1)">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                 </div>
             {% else %}
                 <div class="no-galleries">
@@ -212,5 +287,78 @@
             {% endif %}
         </div>
     {% endfor %}
+    
+    <script>
+    // Initialisation des carrousels de galeries (compatible Turbo)
+    window.galleryCarousels = window.galleryCarousels || {};
+    
+    {% for categoryKey in categories|keys %}
+        {% if galleries[categoryKey] is not empty %}
+            window.galleryCarousels['{{ categoryKey }}'] = { currentIndex: 0, totalSlides: 0 };
+        {% endif %}
+    {% endfor %}
+    
+    window.initGalleryCarousel = function(category) {
+        const carousel = document.getElementById('carousel-' + category);
+        if (!carousel) return;
+        
+        const slides = carousel.querySelectorAll('.gallery-slide');
+        window.galleryCarousels[category].totalSlides = slides.length;
+        
+        if (slides.length === 0) return;
+        
+        updateGalleryCarousel(category);
+    }
+    
+    window.updateGalleryCarousel = function(category) {
+        const carousel = document.getElementById('carousel-' + category);
+        if (!carousel) return;
+        
+        const slides = carousel.querySelectorAll('.gallery-slide');
+        const total = slides.length;
+        const current = window.galleryCarousels[category].currentIndex;
+        
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev', 'next', 'hidden');
+            
+            if (index === current) {
+                slide.classList.add('active');
+            } else if (index === (current - 1 + total) % total) {
+                slide.classList.add('prev');
+            } else if (index === (current + 1) % total) {
+                slide.classList.add('next');
+            } else {
+                slide.classList.add('hidden');
+            }
+        });
+    }
+    
+    window.navigateGalleryCarousel = function(category, direction) {
+        const total = window.galleryCarousels[category].totalSlides;
+        if (total === 0) return;
+        
+        window.galleryCarousels[category].currentIndex = (window.galleryCarousels[category].currentIndex + direction + total) % total;
+        updateGalleryCarousel(category);
+    }
+    
+    // Initialisation au chargement de la page (compatible Turbo)
+    document.addEventListener('turbo:load', function() {
+        // Initialisation immédiate
+        {% for categoryKey in categories|keys %}
+            {% if galleries[categoryKey] is not empty %}
+                initGalleryCarousel('{{ categoryKey }}');
+            {% endif %}
+        {% endfor %}
+        
+        // Ré-initialisation après un court délai pour garantir que tout est chargé
+        setTimeout(function() {
+            {% for categoryKey in categories|keys %}
+                {% if galleries[categoryKey] is not empty %}
+                    initGalleryCarousel('{{ categoryKey }}');
+                {% endif %}
+            {% endfor %}
+        }, 100);
+    });
+    </script>
 </div>
 {% endblock %}

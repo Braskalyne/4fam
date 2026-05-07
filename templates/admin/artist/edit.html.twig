@@ -1,0 +1,97 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Profil {{ artist.name }}{% endblock %}
+{% block page_title %}Profil de {{ artist.name }}{% endblock %}
+
+{% block body %}
+<div class="content-box">
+    {% for message in app.flashes('success') %}
+        <div style="background:#d4edda;color:#155724;padding:1rem;border-radius:8px;margin-bottom:1.5rem;">{{ message }}</div>
+    {% endfor %}
+
+    <h1>Modifier le profil de {{ artist.name }}</h1>
+
+    {# Infos de l'artiste #}
+    <form method="post">
+        <input type="hidden" name="action" value="update_info">
+
+        <div class="form-group">
+            <label for="name">Prénom *</label>
+            <input type="text" id="name" name="name" value="{{ artist.name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Description / Bio</label>
+            <textarea id="bio" name="bio" rows="5">{{ artist.bio }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="instagram_url">Lien Instagram</label>
+            <input type="url" id="instagram_url" name="instagram_url" value="{{ artist.instagramUrl }}">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+        </div>
+    </form>
+
+    <hr style="margin: 3rem 0;">
+
+    {# Galerie de l'artiste #}
+    <h2 style="margin-bottom: 1.5rem;">Galerie de {{ artist.name }}</h2>
+
+    {% if artist.images is not empty %}
+        <form method="post" id="form-positions">
+            <input type="hidden" name="action" value="update_positions">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                {% for image in artist.images %}
+                    <div style="border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; background: #fff;">
+                        <div style="position: relative;">
+                            <img src="/uploads/gallery/{{ image.filename }}" alt="" style="width: 100%; height: 160px; object-fit: cover; display: block;">
+                        </div>
+                        <div style="padding: 0.75rem; display: flex; gap: 0.5rem; align-items: center;">
+                            <label style="font-size: 0.85rem; color: #666; margin: 0; white-space: nowrap;">Position:</label>
+                            <input type="number" name="positions[{{ image.id }}]" value="{{ image.position }}" min="0" style="width: 60px; padding: 0.3rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+                            <button type="button" onclick="deleteImage({{ image.id }})" style="margin-left: auto; background: #e74c3c; color: white; border: none; border-radius: 4px; padding: 0.3rem 0.6rem; cursor: pointer; font-size: 0.75rem;">✕</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success">💾 Enregistrer l'ordre</button>
+        </form>
+
+        <form method="post" id="form-delete" style="display: none;">
+            <input type="hidden" name="action" value="delete_image">
+            <input type="hidden" name="image_id" id="delete_image_id">
+        </form>
+
+        <script>
+        function deleteImage(imageId) {
+            if (confirm('Supprimer cette image ?')) {
+                document.getElementById('delete_image_id').value = imageId;
+                document.getElementById('form-delete').submit();
+            }
+        }
+        </script>
+    {% else %}
+        <p style="color: #999; padding: 1.5rem; background: #f8f8f8; border-radius: 8px; text-align: center; margin-bottom: 2rem;">
+            Aucune image pour le moment.
+        </p>
+    {% endif %}
+
+    <hr style="margin: 2rem 0;">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="add_images">
+        <div class="form-group">
+            <label>Ajouter des images</label>
+            <input type="file" name="images[]" multiple accept="image/*">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Uploader les images</button>
+        </div>
+    </form>
+
+    <hr style="margin: 2rem 0;">
+    <a href="{{ path('admin_dashboard') }}" class="btn">← Retour au tableau de bord</a>
+</div>
+{% endblock %}

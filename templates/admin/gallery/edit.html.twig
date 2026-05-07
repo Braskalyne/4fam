@@ -18,10 +18,10 @@
         <div class="form-group">
             <label for="category">Catégorie *</label>
             <select id="category" name="category" required>
-                <option value="trompe-loeil" {% if gallery.category == 'trompe-loeil' %}selected{% endif %}>Trompe l'œil</option>
                 <option value="projets-creatifs" {% if gallery.category == 'projets-creatifs' %}selected{% endif %}>Projets créatifs</option>
-                <option value="univers-jeunesse" {% if gallery.category == 'univers-jeunesse' %}selected{% endif %}>Univers jeunesse</option>
-                <option value="evenement" {% if gallery.category == 'evenement' %}selected{% endif %}>Événement</option>
+                <option value="trompe-loeil" {% if gallery.category == 'trompe-loeil' %}selected{% endif %}>Trompe l'œil</option>
+                <option value="collaborations" {% if gallery.category == 'collaborations' %}selected{% endif %}>Collaborations</option>
+                <option value="ateliers-participatifs" {% if gallery.category == 'ateliers-participatifs' %}selected{% endif %}>Ateliers participatifs</option>
             </select>
         </div>
         
@@ -50,6 +50,12 @@
     <hr style="margin: 3rem 0;">
     
     <h2>Images de la galerie</h2>
+    
+    <div style="background: #e8f4f8; border-left: 4px solid #2196F3; padding: 1rem 1.2rem; margin-bottom: 1.5rem; border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.9rem; color: #0d47a1;">
+            ℹ️ <strong>Important :</strong> L'image en <strong>position 0</strong> sera affichée comme image principale sur la page Réalisations dans le carousel.
+        </p>
+    </div>
     
     <form method="post" enctype="multipart/form-data" style="margin-bottom: 2rem;">
         <input type="hidden" name="action" value="add_images">

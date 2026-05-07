@@ -74,4 +74,9 @@ class GalleryImage
         $this->gallery = $gallery;
         return $this;
     }
+
+    public function getImagePath(): string
+    {
+        return '/uploads/gallery/' . $this->filename;
+    }
 }

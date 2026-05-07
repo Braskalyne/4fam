@@ -61,7 +61,7 @@
                 
                 /* Header moderne et élégant */
                 nav {
-                    background: rgba(232, 232, 232, 0.95);
+                    background: rgba(232, 232, 232, 0.75);
                     padding: 1.5rem 3rem;
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
@@ -170,7 +170,9 @@
                 }
                 
                 footer {
-                    background: linear-gradient(to top, #d0d0d0, #e0e0e0);
+                    background: linear-gradient(to top, rgba(208, 208, 208, 0.75), rgba(224, 224, 224, 0.75));
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
                     color: #5a5a5a;
                     text-align: center;
                     padding: 4rem 2rem;
@@ -409,7 +411,7 @@
         }
         </script>
     </head>
-    <body>
+    <body class="{% block body_class %}{% endblock %}">
         <nav>
             <button class="burger-menu" aria-label="Menu" aria-expanded="false">
                 <span></span>
@@ -421,12 +423,12 @@
                 <li><a href="{{ path('app_presentation') }}" {% if app.request.attributes.get('_route') == 'app_presentation' %}class="active"{% endif %}>Présentation</a></li>
                 <li><a href="{{ path('app_realisations') }}" {% if app.request.attributes.get('_route') == 'app_realisations' %}class="active"{% endif %}>Réalisations</a></li>
                 <li><a href="{{ path('app_contact') }}" {% if app.request.attributes.get('_route') == 'app_contact' %}class="active"{% endif %}>Contact</a></li>
-                <li><a href="{{ path('app_medias') }}" {% if app.request.attributes.get('_route') == 'app_medias' %}class="active"{% endif %}>Médias</a></li>
             </ul>
         </nav>
         
         {% block body %}{% endblock %}
         
+        {% block footer %}
         <footer>
             <p>&copy; {{ "now"|date("Y") }} 4fam - Artistes Muralistes. Tous droits réservés.</p>
             <div class="footer-links">
@@ -437,6 +439,7 @@
                 Site réalisé par <a href="https://www.augustin-gantelmi.fr" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Augustin Gantelmi</a>
             </p>
         </footer>
+        {% endblock %}
         
         <script>
             function initNavigation() {

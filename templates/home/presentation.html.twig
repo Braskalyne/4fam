@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Présentation du Collectif 4fam - Artistes Muralistes Passionnés{% endblock %}
+{% block title %}Présentation - Maud & Camille, Femmes Artistes Muralistes{% endblock %}
 
-{% block meta_description %}Découvrez le Collectif 4fam : deux artistes muralistes passionnés spécialisés dans la création de fresques murales, trompe-l'œil et projets artistiques sur mesure.{% endblock %}
+{% block meta_description %}Découvrez Maud et Camille, deux femmes artistes muralistes passionnées spécialisées dans la création de fresques murales, trompe-l'œil et projets artistiques sur mesure.{% endblock %}
 
-{% block meta_keywords %}présentation artiste, collectif 4fam, artiste muraliste professionnel, parcours artistique, équipe créative{% endblock %}
+{% block meta_keywords %}Maud artiste muraliste, Camille artiste muraliste, collectif 4fam, femmes artistes muralistes, parcours artistique, équipe créative{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -15,7 +15,7 @@
     <style>
         .presentation-hero {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
         
         .presentation-hero h1 {
@@ -29,169 +29,236 @@
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
-        
-        .presentation-hero .subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.2rem;
-            color: #888;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-        }
-        
-        .presentation-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 5rem;
-            align-items: start;
-            max-width: 1400px;
+
+        .intro-block {
+            max-width: 900px;
             margin: 0 auto 6rem;
+            text-align: center;
         }
-        
-        .presentation-content {
+
+        .intro-block p {
             font-family: 'Inter', sans-serif;
-        }
-        
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #0a0a0a;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 40px;
-            background: linear-gradient(180deg, #c9a961, transparent);
-            border-radius: 2px;
-        }
-        
-        .presentation-content p {
-            font-size: 1.05rem;
-            line-height: 1.8;
+            font-size: 1.15rem;
+            line-height: 1.85;
             color: #4a4a4a;
-            margin-bottom: 1.8rem;
-            font-weight: 400;
+            margin-bottom: 1.4rem;
         }
-        
+
         .highlight-text {
-            background: linear-gradient(120deg, rgba(201, 169, 97, 0.1) 0%, rgba(201, 169, 97, 0.05) 100%);
-            padding: 0.2rem 0.1rem;
+            background: linear-gradient(120deg, rgba(201, 169, 97, 0.15) 0%, rgba(201, 169, 97, 0.08) 100%);
+            padding: 0.1rem 0.2rem;
             border-radius: 4px;
             color: #0a0a0a;
             font-weight: 500;
         }
-        
-        .presentation-image-wrapper {
-            position: relative;
-        }
-        
-        .presentation-image {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 
-                0 10px 40px rgba(0,0,0,0.1),
-                0 0 0 1px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-        
-        .presentation-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .presentation-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .image-badge {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            color: #c9a961;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-        }
-        
-        .skills-grid {
+
+        /* Sections artistes */
+        .artists-section {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
         }
-        
-        .skill-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(249,249,249,0.9) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(201, 169, 97, 0.1);
-            transition: all 0.3s ease;
+
+        .artist-card {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(201, 169, 97, 0.15);
         }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.15);
-            border-color: rgba(201, 169, 97, 0.3);
-        }
-        
-        .skill-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .skill-card h3 {
+
+        .artist-card h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: #0a0a0a;
             margin-bottom: 0.5rem;
         }
-        
-        .skill-card p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.6;
-            margin: 0;
+
+        .artist-card h2 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
         }
-        
+
+        .artist-card h2 a:hover {
+            color: #c9a961;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #c9a961;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .instagram-link:hover {
+            color: #b89654;
+        }
+
+        .artist-bio {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        /* Carrousel galerie artiste */
+        .artist-gallery-carousel {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            overflow: visible;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Par défaut, empile toutes les slides au centre (visibles) */
+        .carousel-slide {
+            width: 320px;
+            height: 320px;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            width: 320px;
+            height: 320px;
+            z-index: 3;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .carousel-slide.prev {
+            width: 220px;
+            height: 220px;
+            z-index: 2;
+            opacity: 0.5;
+            transform: translateX(-180px) scale(0.85);
+            filter: brightness(0.7);
+        }
+
+        .carousel-slide.next {
+            width: 220px;
+            height: 220px;
+            z-index: 2;
+            opacity: 0.5;
+            transform: translateX(180px) scale(0.85);
+            filter: brightness(0.7);
+        }
+
+        .carousel-slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: #0a0a0a;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .carousel-nav.prev {
+            left: 10px;
+        }
+
+        .carousel-nav.next {
+            right: 10px;
+        }
+
+        .artist-gallery-empty {
+            text-align: center;
+            color: #999;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            padding: 2rem;
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
         .cta-section {
             text-align: center;
-            margin: 5rem auto;
+            margin: 0 auto 2rem;
             padding: 3rem;
             background: linear-gradient(135deg, #f8f8f8 0%, #ececec 100%);
             border-radius: 20px;
             max-width: 800px;
         }
-        
+
         .cta-section h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
         }
-        
+
         .cta-section p {
             font-family: 'Inter', sans-serif;
             color: #666;
             margin-bottom: 2rem;
             font-size: 1.05rem;
         }
-        
+
         .cta-button {
             display: inline-block;
             padding: 1.2rem 3rem;
@@ -206,28 +273,86 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(201, 169, 97, 0.3);
         }
-        
+
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
         }
-        
-        @media (max-width: 968px) {
-            .presentation-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .artist-gallery-carousel {
+                height: 320px;
             }
             
-            .presentation-hero h1 {
-                font-size: 3rem;
+            .carousel-slide.active {
+                width: 280px;
+                height: 280px;
             }
             
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .carousel-slide {
+                width: 280px;
+                height: 280px;
             }
             
-            .presentation-image img {
-                height: 450px;
+            .carousel-slide.prev,
+            .carousel-slide.next {
+                width: 180px;
+                height: 180px;
+                transform: translateX(-140px) scale(0.8);
+            }
+            
+            .carousel-slide.next {
+                transform: translateX(140px) scale(0.8);
+            }
+            
+            .carousel-slide {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .carousel-nav {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .carousel-nav svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .presentation-hero h1 { font-size: 2.8rem; }
+            .artists-section { grid-template-columns: 1fr; gap: 3rem; }
+            
+            .artist-gallery-carousel {
+                height: 280px;
+            }
+            
+            .carousel-slide.active {
+                width: 260px;
+                height: 260px;
+            }
+            
+            .carousel-slide.prev,
+            .carousel-slide.next {
+                width: 160px;
+                height: 160px;
+                transform: translateX(-120px) scale(0.75);
+            }
+            
+            .carousel-slide.next {
+                transform: translateX(120px) scale(0.75);
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .carousel-nav svg {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
@@ -237,61 +362,169 @@
 <div class="container">
     <div class="presentation-hero">
         <h1>À propos de nous</h1>
-        <p class="subtitle">Artistes muralistes passionnés</p>
     </div>
-    
-    <div class="presentation-grid">
-        <div class="presentation-content">
-            <div class="section-title">Notre univers</div>
-            <p>
-                Passionnés par l'<span class="highlight-text">art mural</span> depuis toujours, nous transformons les espaces en œuvres d'art uniques qui racontent des histoires et créent des émotions.
-            </p>
-            <p>
-                Avec une expertise en <span class="highlight-text">trompe-l'œil</span>, peinture décorative et fresques murales, nous mettons notre talent au service de projets variés : particuliers, entreprises, espaces publics et événements.
-            </p>
-            <p>
-                Chaque projet est une nouvelle <span class="highlight-text">aventure créative</span> où nous nous efforçons de comprendre vos envies et de les transformer en réalité artistique.
-            </p>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>Trompe-l'œil</h3>
-                    <p>Créations murales en 3D pour donner vie à vos murs</p>
+
+    <div class="intro-block">
+        <p>
+            Passionnées par l'<span class="highlight-text">art mural</span> depuis toujours, nous transformons les espaces en œuvres d'art uniques qui racontent des histoires et créent des émotions.
+        </p>
+        <p>
+            Avec une expertise en <span class="highlight-text">trompe-l'œil</span>, peinture décorative et fresques murales, nous mettons notre talent au service de projets variés : particuliers, entreprises, espaces publics et événements.
+        </p>
+        <p>
+            Chaque projet est une nouvelle <span class="highlight-text">aventure créative</span> où nous nous efforçons de comprendre vos envies et de les transformer en réalité artistique.
+        </p>
+    </div>
+
+    {# Sections Maud & Camille #}
+    <div class="artists-section">
+        {# Maud #}
+        <div class="artist-card">
+            <h2>
+                {% if maud and maud.instagramUrl %}
+                    <a href="{{ maud.instagramUrl }}" target="_blank" rel="noopener noreferrer">{{ maud ? maud.name : 'Maud' }}</a>
+                {% else %}
+                    {{ maud ? maud.name : 'Maud' }}
+                {% endif %}
+            </h2>
+            {% if maud and maud.instagramUrl %}
+                <a href="{{ maud.instagramUrl }}" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+            {% endif %}
+            {% if maud and maud.bio %}
+                <p class="artist-bio">{{ maud.bio|nl2br }}</p>
+            {% endif %}
+            {% if maud and maud.images is not empty %}
+                <div class="artist-gallery-carousel" id="carousel-maud">
+                    <button class="carousel-nav prev" onclick="navigateCarousel('maud', -1)">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="carousel-container">
+                        {% for image in maud.images %}
+                            <div class="carousel-slide" data-index="{{ loop.index0 }}">
+                                <img src="/uploads/gallery/{{ image.filename }}" alt="{{ image.caption ?? (maud.name ~ ' - création murale') }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-nav next" onclick="navigateCarousel('maud', 1)">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                 </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">✨</div>
-                    <h3>Peinture décorative</h3>
-                    <p>Fresques et motifs sur-mesure pour embellir vos espaces</p>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">🏢</div>
-                    <h3>Projets professionnels</h3>
-                    <p>Entreprises, commerces et espaces publics</p>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">🎉</div>
-                    <h3>Événements</h3>
-                    <p>Animations live et créations éphémères</p>
-                </div>
-            </div>
+            {% else %}
+                <div class="artist-gallery-empty">Galerie à venir</div>
+            {% endif %}
         </div>
-        
-        <div class="presentation-image-wrapper">
-            <div class="presentation-image">
-                <img src="/images/maud_et_camille.jpg" alt="4fam, artistes muralistes">
-            </div>
-            <div class="image-badge">Artistes Muralistes</div>
+
+        {# Camille #}
+        <div class="artist-card">
+            <h2>
+                {% if camille and camille.instagramUrl %}
+                    <a href="{{ camille.instagramUrl }}" target="_blank" rel="noopener noreferrer">{{ camille ? camille.name : 'Camille' }}</a>
+                {% else %}
+                    {{ camille ? camille.name : 'Camille' }}
+                {% endif %}
+            </h2>
+            {% if camille and camille.instagramUrl %}
+                <a href="{{ camille.instagramUrl }}" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+            {% endif %}
+            {% if camille and camille.bio %}
+                <p class="artist-bio">{{ camille.bio|nl2br }}</p>
+            {% endif %}
+            {% if camille and camille.images is not empty %}
+                <div class="artist-gallery-carousel" id="carousel-camille">
+                    <button class="carousel-nav prev" onclick="navigateCarousel('camille', -1)">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="carousel-container">
+                        {% for image in camille.images %}
+                            <div class="carousel-slide" data-index="{{ loop.index0 }}">
+                                <img src="/uploads/gallery/{{ image.filename }}" alt="{{ image.caption ?? (camille.name ~ ' - création murale') }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-nav next" onclick="navigateCarousel('camille', 1)">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            {% else %}
+                <div class="artist-gallery-empty">Galerie à venir</div>
+            {% endif %}
         </div>
     </div>
-    
+
     <div class="cta-section">
         <h3>Vous avez un projet en tête ?</h3>
         <p>N'hésitez pas à nous contacter pour discuter de vos idées et donner vie à vos projets artistiques.</p>
         <a href="{{ path('app_contact') }}" class="cta-button">Parlons de votre projet</a>
     </div>
 </div>
+
+<script>
+// Initialisation des carrousels (compatible Turbo)
+window.carousels = window.carousels || {};
+window.carousels.maud = { currentIndex: 0, totalSlides: 0 };
+window.carousels.camille = { currentIndex: 0, totalSlides: 0 };
+
+window.initCarousel = function(artist) {
+    const carousel = document.getElementById('carousel-' + artist);
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    window.carousels[artist].totalSlides = slides.length;
+    
+    if (slides.length === 0) return;
+    
+    updateCarousel(artist);
+}
+
+window.updateCarousel = function(artist) {
+    const carousel = document.getElementById('carousel-' + artist);
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const total = slides.length;
+    const current = window.carousels[artist].currentIndex;
+    
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active', 'prev', 'next', 'hidden');
+        
+        if (index === current) {
+            slide.classList.add('active');
+        } else if (index === (current - 1 + total) % total) {
+            slide.classList.add('prev');
+        } else if (index === (current + 1) % total) {
+            slide.classList.add('next');
+        } else {
+            slide.classList.add('hidden');
+        }
+    });
+}
+
+window.navigateCarousel = function(artist, direction) {
+    const total = window.carousels[artist].totalSlides;
+    if (total === 0) return;
+    
+    window.carousels[artist].currentIndex = (window.carousels[artist].currentIndex + direction + total) % total;
+    updateCarousel(artist);
+}
+
+// Initialisation au chargement de la page (compatible Turbo)
+document.addEventListener('turbo:load', function() {
+    // Initialisation immédiate
+    initCarousel('maud');
+    initCarousel('camille');
+    
+    // Ré-initialisation après un court délai pour garantir que tout est chargé
+    setTimeout(function() {
+        initCarousel('maud');
+        initCarousel('camille');
+    }, 100);
+});
+</script>
+
 {% endblock %}

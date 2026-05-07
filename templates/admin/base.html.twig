@@ -194,7 +194,8 @@
                     <ul>
                         <li><a href="{{ path('admin_dashboard') }}" {% if app.request.attributes.get('_route') starts with 'admin_dashboard' %}class="active"{% endif %}>Tableau de bord</a></li>
                         <li><a href="{{ path('admin_gallery_index') }}" {% if app.request.attributes.get('_route') starts with 'admin_gallery' %}class="active"{% endif %}>Galeries</a></li>
-                        <li><a href="{{ path('admin_media_index') }}" {% if app.request.attributes.get('_route') starts with 'admin_media' %}class="active"{% endif %}>Médias</a></li>
+                        <li><a href="{{ path('admin_artist_edit', {slug: 'maud'}) }}" {% if app.request.attributes.get('_route') == 'admin_artist_edit' and app.request.attributes.get('slug') == 'maud' %}class="active"{% endif %}>Maud</a></li>
+                        <li><a href="{{ path('admin_artist_edit', {slug: 'camille'}) }}" {% if app.request.attributes.get('_route') == 'admin_artist_edit' and app.request.attributes.get('slug') == 'camille' %}class="active"{% endif %}>Camille</a></li>
                         <li><a href="{{ path('app_home') }}">← Voir le site</a></li>
                     </ul>
                 </nav>

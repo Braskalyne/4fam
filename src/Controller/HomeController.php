@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Gallery;
 use App\Form\ContactType;
+use App\Repository\ArtistProfileRepository;
 use App\Repository\GalleryRepository;
-use App\Repository\MediaRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,19 +23,25 @@ class HomeController extends AbstractController
     }
 
     #[Route('/presentation', name: 'app_presentation')]
-    public function presentation(): Response
+    public function presentation(ArtistProfileRepository $artistProfileRepository): Response
     {
-        return $this->render('home/presentation.html.twig');
+        $maud = $artistProfileRepository->findOneBy(['slug' => 'maud']);
+        $camille = $artistProfileRepository->findOneBy(['slug' => 'camille']);
+
+        return $this->render('home/presentation.html.twig', [
+            'maud' => $maud,
+            'camille' => $camille,
+        ]);
     }
 
     #[Route('/realisations', name: 'app_realisations')]
     public function realisations(GalleryRepository $galleryRepository): Response
     {
         $categories = [
-            'trompe-loeil' => 'Trompe l\'œil',
             'projets-creatifs' => 'Projets créatifs',
-            'univers-jeunesse' => 'Univers jeunesse',
-            'evenement' => 'Événement'
+            'trompe-loeil' => 'Trompe l\'œil',
+            'collaborations' => 'Collaborations',
+            'ateliers-participatifs' => 'Ateliers participatifs'
         ];
 
         $galleries = [];
@@ -73,7 +79,7 @@ class HomeController extends AbstractController
             // Créer l'email
             $email = (new TemplatedEmail())
                 ->from(new Address($data['email'], $data['name']))
-                ->to(new Address('augustin.gantelmi@gmail.com'))
+                ->to(new Address('contact.4fam@gmail.com'))
                 ->replyTo($data['email'])
                 ->subject('Contact depuis le site - ' . $data['subject'])
                 ->htmlTemplate('emails/contact.html.twig')
@@ -97,16 +103,6 @@ class HomeController extends AbstractController
 
         return $this->render('home/contact.html.twig', [
             'contactForm' => $form,
-        ]);
-    }
-
-    #[Route('/medias', name: 'app_medias')]
-    public function medias(MediaRepository $mediaRepository): Response
-    {
-        $medias = $mediaRepository->findAllPublished();
-
-        return $this->render('home/medias.html.twig', [
-            'medias' => $medias,
         ]);
     }
 

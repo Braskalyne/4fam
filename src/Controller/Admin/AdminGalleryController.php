@@ -19,10 +19,10 @@ class AdminGalleryController extends AbstractController
     public function index(GalleryRepository $galleryRepository): Response
     {
         $categories = [
-            'trompe-loeil' => 'Trompe l\'œil',
             'projets-creatifs' => 'Projets créatifs',
-            'univers-jeunesse' => 'Univers jeunesse',
-            'evenement' => 'Événement'
+            'trompe-loeil' => 'Trompe l\'œil',
+            'collaborations' => 'Collaborations',
+            'ateliers-participatifs' => 'Ateliers participatifs'
         ];
         
         $galleriesByCategory = [];
