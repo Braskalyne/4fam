@@ -109,6 +109,11 @@
             z-index: 1;
         }
         
+        /* Met la première slide en avant par défaut */
+        .gallery-slide:first-child {
+            z-index: 3;
+        }
+        
         .gallery-slide.active {
             width: 450px;
             height: 450px;
@@ -153,6 +158,11 @@
             font-weight: 600;
             opacity: 0;
             transition: opacity 0.3s ease;
+        }
+        
+        /* Affiche le titre sur la première slide par défaut */
+        .gallery-slide:first-child .gallery-slide-title {
+            opacity: 1;
         }
         
         .gallery-slide.active .gallery-slide-title {
