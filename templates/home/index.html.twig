@@ -17,7 +17,14 @@
     <style>
         /* Fond image sur toute la page d'accueil - surcharge le fond gris du body */
         body.page-home {
-            background: url('/images/fond.webp') center/cover fixed !important;
+            background: url('/images/PXL_20260518_140855327.PORTRAIT.jpg') center/cover fixed !important;
+        }
+
+        /* Fond mobile pour les petits écrans */
+        @media (max-width: 670px) {
+            body.page-home {
+                background: url('/images/fond_mobile.jpg') center/cover fixed !important;
+            }
         }
 
         /* Overlay sombre sur tout le body pour uniformiser l'assombrissement */
@@ -215,8 +222,7 @@
             De Paris à Lyon, nous transformons vos espaces en œuvres d'art uniques.</p>
         </div>
         <div class="hero-buttons">
-            <a href="https://www.instagram.com/maudroyole/" target="_blank" rel="noopener noreferrer" class="cta-button">Maud</a>
-            <a href="https://www.instagram.com/la.biket/" target="_blank" rel="noopener noreferrer" class="cta-button">Camille</a>
+            <a href="https://www.instagram.com/collectif_4fam/" target="_blank" rel="noopener noreferrer" class="cta-button">Instagram</a>
         </div>
     </div>
 </div>
